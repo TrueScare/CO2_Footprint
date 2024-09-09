@@ -1,25 +1,29 @@
-export default class DataHandler {   
-    /* fields */
-    url;
-    constructor(url) {
-        this.url = url
+export default class DataHandler {
+
+    constructor(data) {
+        this.data = data;
     }
 
-    /* function */
-    getData() {
-        fetch(this.url).then((res)=> {
-            return res.text()
-        }).then(function(data){
-            document.dispatchEvent(new CustomEvent("DataFoundEvent",{detail: data}))
-        });
-    }
+    sortByColumn(column, asc = true) {
+        switch(column) {
+            case 0: {
+                if (asc) {
+                    this.data.sort((a, b) => a[column].localeCompare(b[column]));
+                } else {
+                    this.data.sort((a, b) => -1 * (a[column].localeCompare(b[column])));
+                }
+            }
+                break;
+            default: {
+                if (asc) {
+                    this.data.sort((a, b) => a[column] - b[column]);
+                } else {
+                    this.data.sort((a, b) => a[column] + b[column]);
+                }
+            }
+                break;
 
-    processLines(string){
-        let res = [[]];
-        
-        string.split('\n').forEach((data) => {
-            res.push(data.split(";"))
-        });
-        return res;
+        }
+        return this.data;
     }
 }
