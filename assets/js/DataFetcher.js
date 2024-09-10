@@ -17,11 +17,13 @@ export default class DataFetcher {
 
     processLines(string) {
         let res = [];
-        string.split("\r\n").forEach((data) => {
+        
+        string.split("\n").forEach((data) => {
             if (data !== "") {
                 res.push(data.split(";"));
             }
         });
+        
         return res;
     }
 }

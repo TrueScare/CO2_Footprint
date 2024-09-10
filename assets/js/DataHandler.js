@@ -1,7 +1,6 @@
 export default class DataHandler {
-
-    constructor(data) {
-        this.data = data;
+    setData(data){
+        this.data=data;
     }
 
     sortByColumn(column, asc = true) {
@@ -25,5 +24,13 @@ export default class DataHandler {
 
         }
         return this.data;
+    }
+
+    filterByString(search){
+        return this.data.filter((data) => {
+            return false;
+            //see if the array inside the column filters a result. if so the length should be greater than 0
+            return data.filter(search).length > 0
+        })
     }
 }
