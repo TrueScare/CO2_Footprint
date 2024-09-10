@@ -11,9 +11,16 @@
 
     <!--Scripts-->
     <script src="main.js" type="module"></script>
-    
+
     <!--Styles-->
-    <link rel="stylesheet" href="./assets/css/main.css"></script>
+    <link rel="stylesheet" href="./assets/css/main.css">
+    </script>
+    <link rel="stylesheet" href="./assets/css/structure.css">
+    </script>
+    <link rel="stylesheet" href="./assets/css/colors.css">
+    </script>
+    <link rel="stylesheet" href="./assets/css/table.css">
+    </script>
 
     <title>CO2 Fußabdruck</title>
 </head>
@@ -23,11 +30,17 @@
     </header>
     <main>
         <section>
-            <label>
-                <input id="search" type="text" placeholder="Suche...">
-            </label>
+
             <table id="main_table">
-                <caption><h1>CO2 Fußabdruck List</h1></caption>
+                <caption>
+                    <h1>CO2 Fußabdruck List</h1>
+                    <span>alle absoluten angaben in Tonnen</span>
+                    <div class="controls">
+                        <label>
+                            <input id="search" type="text" placeholder="Suche...">
+                        </label>
+                    </div>
+                </caption>
                 <thead>
                     <tr>
                         <th>Position</th>
@@ -37,8 +50,8 @@
                         <th>2005</th>
                         <th>2017</th>
                         <th>2020</th>
-                        <th>Per Capita (2022)</th>
-                        <th>% der Welt</th>
+                        <th>Pro Einwohner (2022)</th>
+                        <th>Anteil der Welt in %</th>
                         <th>Veränderung (1990 = 100%)</th>
                     </tr>
                 </thead>

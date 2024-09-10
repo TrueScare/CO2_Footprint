@@ -1,21 +1,7 @@
-table {
-    border-collapse: collapse;
+body {
+    color: var(--text-main);
 }
 
-table th,
-table td {
-    padding: 7px 10px;
-}
-
-table thead {
-    text-align: left;
-
-    background-color: black;
-    color: white;
-    border-bottom: 2px solid black;
-}
-
-table tbody tr:nth-child(2n){
-    background-color: gray;
-    border: none;
+h1 {
+    color: var(--text-headline)
 }
