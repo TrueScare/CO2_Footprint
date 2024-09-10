@@ -67,10 +67,8 @@ export default class TableHandler {
             for (let j = 1; j < cells.length; j++) {
                 let searchIn = cells[j].innerHTML.toLowerCase();
                 let position = searchIn.indexOf(search.toLowerCase());
-                console.log(position);
                 if (position >= 0) {
                     let exchange = cells[j].innerHTML.substring(position, position+search.length);
-                    console.log(exchange, position, search.length);
                     cells[j].innerHTML = cells[j].innerHTML.replace(exchange, "<mark>" + exchange + "</mark>");
                 }
             }
