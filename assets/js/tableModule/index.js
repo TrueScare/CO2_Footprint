@@ -1,7 +1,8 @@
-import DataFetcher from "./assets/js/DataFetcher.js";
-import TableHandler from "./assets/js/TableHandler.js";
-import DataHandler from "./assets/js/DataHandler.js";
-import SortStateMashine from "./assets/js/SortStateMashine.js";
+
+import DataFetcher from "./DataFetcher.js";
+import TableHandler from "./TableHandler.js";
+import DataHandler from "./DataHandler.js";
+import SortStateMashine from "./SortStateMashine.js";
 
 document.addEventListener('DOMContentLoaded', () => {
     /* setup after page load */
@@ -34,5 +35,3 @@ document.addEventListener('DOMContentLoaded', () => {
     /* set off the chain by fetching the data */
     dataFetcher.getData();
 });
-
-import "./assets/js/tableModule";
