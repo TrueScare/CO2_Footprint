@@ -1,8 +1,0 @@
-body {
-    --color-main: #008000;
-    --color-main-weak: #00800030;
-
-    --text-main: black;
-    --text-secondary: var(--color-main);
-    --text-headline: var(--text-secondary);
-}

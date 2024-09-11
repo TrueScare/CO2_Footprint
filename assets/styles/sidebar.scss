@@ -1,0 +1,31 @@
+#navigation {
+    left: 0;
+    right: auto;
+
+    .isRTL & {
+        left: auto;
+        right: 0;
+    }
+}
+
+.sidebar {
+    .sidebar-content {
+        display: none;
+
+        &.active {
+            display: block;
+        }
+
+        min-width: 100px;
+
+        .btn {
+            z-index: 100;
+        }
+
+        .btn-close {
+            right: 5px;
+            top: 5px;
+        }
+    }
+}
+
