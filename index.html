@@ -2,7 +2,7 @@
 <html lang="de-DE">
 
 <head>
-    <!--Metatags-->
+    <!--Meta-->
     <meta charset="UTF-8">
     <meta name="description" content="This webpage was developed during a case study on web programming.">
     <meta name="keywords" content="co2, footprint, iu internationale hochschule, web development">
@@ -13,55 +13,70 @@
     <script src="main.js" type="module"></script>
 
     <!--Styles-->
-    <link rel="stylesheet" href="./assets/css/main.css">
-    </script>
-    <link rel="stylesheet" href="./assets/css/structure.css">
-    </script>
-    <link rel="stylesheet" href="./assets/css/colors.css">
-    </script>
-    <link rel="stylesheet" href="./assets/css/table.css">
-    </script>
+    <link rel="stylesheet" href="assets/styles/main.css">
 
-    <title>CO2 Fußabdruck</title>
+    <title>Steps to Green - CO₂ Fußabdruck</title>
 </head>
 
 <body>
-    <header>
-    </header>
-    <main>
-        <section>
+<header>
+    <!--insert logo here-->
+    <div class="container">
+        <div class="navbar navbar-light">
+            <div class="navbar-brand">Hier muss ein Logo hin!</div>
+            <h1>Steps to Green</h1>
+        </div>
+    </div>
+</header>
+<aside id="navigation" class="position-absolute sidebar">
+    <div class="btn btn-open"></div>
 
-            <table id="main_table">
-                <caption>
-                    <h1>CO2 Fußabdruck List</h1>
-                    <span>alle absoluten angaben in Tonnen</span>
-                    <div class="controls">
-                        <label>
-                            <input id="search" type="text" placeholder="Suche...">
-                        </label>
-                    </div>
-                </caption>
-                <thead>
-                    <tr>
-                        <th>Position</th>
-                        <th>Land</th>
-                        <th>1970</th>
-                        <th>1990</th>
-                        <th>2005</th>
-                        <th>2017</th>
-                        <th>2020</th>
-                        <th>Pro Einwohner (2022)</th>
-                        <th>Anteil der Welt in %</th>
-                        <th>Veränderung (1990 = 100%)</th>
-                    </tr>
+    <div class="sidebar-content position-relative">
+        <div class="btn btn-close position-absolute"></div>
+        <!--Navigation-->
+        <nav class="navbar">
+            <ul class="navbar-nav">
+                <li>Link 1</li>
+                <li>Link 2</li>
+                <li>Link 3</li>
+            </ul>
+        </nav>
+    </div>
+</aside>
+<main>
+    <section class="container">
+        <h2>CO₂ Fußabdruck List</h2>
+        <span>alle absoluten angaben in Tonnen</span>
+        <div class="controls">
+            <label>
+                <input id="search" type="text" placeholder="Suche...">
+            </label>
+        </div>
+        <div class="table-responsive">
+
+            <table id="main_table" class="caption-top table table-striped table-hover">
+                <thead class="table-dark">
+                <tr>
+                    <th scope="col">Position</th>
+                    <th scope="col">Land</th>
+                    <th scope="col">1970</th>
+                    <th scope="col">1990</th>
+                    <th scope="col">2005</th>
+                    <th scope="col">2017</th>
+                    <th scope="col">2020</th>
+                    <th scope="col">Pro Einwohner (2022)</th>
+                    <th scope="col">Anteil der Welt in %</th>
+                    <th scope="col">Veränderung (1990 = 100%)</th>
+                </tr>
                 </thead>
                 <tbody>
-                    <!--will be filled dynamically-->
+                <!--will be filled dynamically-->
                 </tbody>
             </table>
-        </section>
-    </main>
-    <footer></footer>
+        </div>
+    </section>
+</main>
+<footer><!--legal notice--></footer>
 </body>
 
 </html>
