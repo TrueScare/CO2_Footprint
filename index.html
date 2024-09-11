@@ -23,33 +23,52 @@
     <!--insert logo here-->
     <div class="container">
         <div class="navbar navbar-light">
-            <div class="navbar-brand">Hier muss ein Logo hin!</div>
+            <div class="navbar-brand">
+                <img alt="Logo" src="./assets/media/iuwebsitelogo.png">
+            </div>
             <h1>Steps to Green</h1>
         </div>
     </div>
 </header>
-<aside id="navigation" class="position-absolute sidebar">
-    <div class="btn btn-open"></div>
+<aside id="navigation" class="position-fixed sidebar h-100">
+    <div class="btn btn-open bg-primary text-white">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list"
+             viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+                  d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+        </svg>
+    </div>
 
-    <div class="sidebar-content position-relative">
-        <div class="btn btn-close position-absolute"></div>
-        <!--Navigation-->
-        <nav class="navbar">
-            <ul class="navbar-nav">
-                <li>Link 1</li>
-                <li>Link 2</li>
-                <li>Link 3</li>
-            </ul>
-        </nav>
+    <div class="card sidebar-content rounded-0 position-relative bg-primary text-white h-100">
+        <div class="card-body">
+            <div class="btn btn-close position-absolute"></div>
+            <!--Navigation-->
+            <nav class="navbar">
+                <h5 class="text-white">Unsere Inhalte:</h5>
+                <hr class="w-100">
+                <ul class="navbar-nav" id="sidebar_content">
+                    <!--will be filled dynamically-->
+                </ul>
+            </nav>
+        </div>
     </div>
 </aside>
 <main>
-    <section class="container">
-        <h2>CO₂ Fußabdruck List</h2>
+    <section class="container" id="mission" aria-labelledby="misison_headline">
+        <h2 id="misison_headline">Unsere Mission</h2>
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+        dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
+        clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
+        consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed
+        diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+        takimata sanctus est Lorem ipsum dolor sit amet.
+    </section>
+    <section class="container" id="co2-table" aria-labelledby="table_headline">
+        <h2 id="table_headline">CO₂ Fußabdruck der Länder</h2>
         <span>alle absoluten angaben in Tonnen</span>
         <div class="controls">
             <label>
-                <input id="search" type="text" placeholder="Suche...">
+                <input id="search" class="sidebar_content" type="text" placeholder="Suche...">
             </label>
         </div>
         <div class="table-responsive">
@@ -76,7 +95,12 @@
         </div>
     </section>
 </main>
-<footer><!--legal notice--></footer>
+<footer class="bg-primary text-white">
+    <!--legal notice-->
+    <div class="container py-2">
+        some shit i have to come up with
+    </div>
+</footer>
 </body>
 
 </html>

@@ -5269,8 +5269,8 @@ textarea.form-control-lg {
 }
 
 .btn-close {
-  --bs-btn-close-color: #000;
-  --bs-btn-close-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e");
+  --bs-btn-close-color: #fff;
+  --bs-btn-close-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e");
   --bs-btn-close-opacity: 0.5;
   --bs-btn-close-hover-opacity: 0.75;
   --bs-btn-close-focus-shadow: 0 0 0 0.25rem rgba(0, 128, 0, 0.25);
@@ -11845,20 +11845,61 @@ textarea.form-control-lg {
   }
 }
 #navigation {
+  max-width: 100px;
+  top: 0;
   left: 0;
   right: auto;
+}
+@media (min-width: 576px) {
+  #navigation {
+    max-width: 200px;
+  }
+}
+@media (min-width: 768px) {
+  #navigation {
+    max-width: 300px;
+  }
 }
 .isRTL #navigation {
   left: auto;
   right: 0;
 }
 
+.sidebar .btn-open {
+  cursor: pointer;
+  position: absolute;
+  border-radius: 50%;
+  aspect-ratio: 1;
+  bottom: 33%;
+  height: 100px;
+  left: -50px;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+}
+.sidebar .btn-open .bi {
+  height: 40px;
+  width: 40px;
+}
+.isRTL .sidebar .btn-open {
+  left: auto;
+  right: -50px;
+}
 .sidebar .sidebar-content {
-  display: none;
+  transition: all 0.3s ease-in-out;
+  left: -500px;
   min-width: 100px;
 }
 .sidebar .sidebar-content.active {
-  display: block;
+  left: 0;
+}
+.isRTL .sidebar .sidebar-content {
+  left: auto;
+  right: -500px;
+}
+.isRTL .sidebar .sidebar-content.active {
+  right: 0;
+  left: auto;
 }
 .sidebar .sidebar-content .btn {
   z-index: 100;
@@ -11866,6 +11907,29 @@ textarea.form-control-lg {
 .sidebar .sidebar-content .btn-close {
   right: 5px;
   top: 5px;
+}
+.sidebar .sidebar-content a {
+  color: #fff;
+}
+.sidebar .sidebar-content a:hover {
+  color: #006600;
+}
+
+header .navbar-brand {
+  height: 200px;
+}
+@media (max-width: 575.98px) {
+  header .navbar-brand {
+    height: 150px;
+    margin: 0 auto;
+  }
+}
+header .navbar-brand img {
+  height: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 /*# sourceMappingURL=main.css.map */

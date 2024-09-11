@@ -1,0 +1,10 @@
+header .navbar-brand {
+    @include media-breakpoint-down(sm){
+        height: 150px;
+        margin: 0 auto;
+    }
+    height: 200px;
+    img {
+        height: 100%;
+    }
+}
