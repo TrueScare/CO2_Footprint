@@ -37,7 +37,6 @@ export default class TableHandler {
 
     /* functions */
     appendEntry(options, index) {
-        console.log()
         let tableBody = this.table.querySelector('tbody');
         let row = tableBody.insertRow(tableBody.rows.length);
         let indexCell = row.insertCell(0);
@@ -61,7 +60,9 @@ export default class TableHandler {
     highlightContent(search) {
         let tableBody = this.table.querySelector('tbody');
         let rows = tableBody.rows;
-
+        if(search.length <= 0){
+            return;
+        }
         for (let i = 0; i < rows.length; i++) {
             let cells = rows[i].cells;
             for (let j = 1; j < cells.length; j++) {

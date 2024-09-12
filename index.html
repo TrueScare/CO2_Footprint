@@ -2,7 +2,7 @@
 <html lang="de-DE">
 
 <head>
-    <!--Metatags-->
+    <!--Meta-->
     <meta charset="UTF-8">
     <meta name="description" content="This webpage was developed during a case study on web programming.">
     <meta name="keywords" content="co2, footprint, iu internationale hochschule, web development">
@@ -11,44 +11,96 @@
 
     <!--Scripts-->
     <script src="main.js" type="module"></script>
-    
-    <!--Styles-->
-    <link rel="stylesheet" href="./assets/css/main.css"></script>
 
-    <title>CO2 Fußabdruck</title>
+    <!--Styles-->
+    <link rel="stylesheet" href="assets/styles/main.css">
+
+    <title>Steps to Green - CO₂ Fußabdruck</title>
 </head>
 
 <body>
-    <header>
-    </header>
-    <main>
-        <section>
+<header>
+    <!--insert logo here-->
+    <div class="container">
+        <div class="navbar navbar-light">
+            <div class="navbar-brand">
+                <img alt="Logo" src="./assets/media/iuwebsitelogo.png">
+            </div>
+            <h1>Steps to Green</h1>
+        </div>
+    </div>
+</header>
+<aside id="navigation" class="position-fixed sidebar h-100">
+    <div class="btn btn-open bg-primary text-white">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list"
+             viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+                  d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+        </svg>
+    </div>
+
+    <div class="card sidebar-content rounded-0 position-relative bg-primary text-white h-100">
+        <div class="card-body">
+            <div class="btn btn-close position-absolute"></div>
+            <!--Navigation-->
+            <nav class="navbar">
+                <h5 class="text-white">Unsere Inhalte:</h5>
+                <hr class="w-100">
+                <ul class="navbar-nav" id="sidebar_content">
+                    <!--will be filled dynamically-->
+                </ul>
+            </nav>
+        </div>
+    </div>
+</aside>
+<main>
+    <section class="container" id="mission" aria-labelledby="misison_headline">
+        <h2 id="misison_headline">Unsere Mission</h2>
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+        dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
+        clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
+        consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed
+        diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+        takimata sanctus est Lorem ipsum dolor sit amet.
+    </section>
+    <section class="container" id="co2-table" aria-labelledby="table_headline">
+        <h2 id="table_headline">CO₂ Fußabdruck der Länder</h2>
+        <span>alle absoluten angaben in Tonnen</span>
+        <div class="controls">
             <label>
-                <input id="search" type="text" placeholder="Suche...">
+                <input id="search" class="sidebar_content" type="text" placeholder="Suche...">
             </label>
-            <table id="main_table">
-                <caption><h1>CO2 Fußabdruck List</h1></caption>
-                <thead>
-                    <tr>
-                        <th>Position</th>
-                        <th>Land</th>
-                        <th>1970</th>
-                        <th>1990</th>
-                        <th>2005</th>
-                        <th>2017</th>
-                        <th>2020</th>
-                        <th>Per Capita (2022)</th>
-                        <th>% der Welt</th>
-                        <th>Veränderung (1990 = 100%)</th>
-                    </tr>
+        </div>
+        <div class="table-responsive">
+
+            <table id="main_table" class="caption-top table table-striped table-hover">
+                <thead class="table-dark">
+                <tr>
+                    <th scope="col">Position</th>
+                    <th scope="col">Land</th>
+                    <th scope="col">1970</th>
+                    <th scope="col">1990</th>
+                    <th scope="col">2005</th>
+                    <th scope="col">2017</th>
+                    <th scope="col">2020</th>
+                    <th scope="col">Pro Einwohner (2022)</th>
+                    <th scope="col">Anteil der Welt in %</th>
+                    <th scope="col">Veränderung (1990 = 100%)</th>
+                </tr>
                 </thead>
                 <tbody>
-                    <!--will be filled dynamically-->
+                <!--will be filled dynamically-->
                 </tbody>
             </table>
-        </section>
-    </main>
-    <footer></footer>
+        </div>
+    </section>
+</main>
+<footer class="bg-primary text-white">
+    <!--legal notice-->
+    <div class="container py-2">
+        some shit i have to come up with
+    </div>
+</footer>
 </body>
 
 </html>
