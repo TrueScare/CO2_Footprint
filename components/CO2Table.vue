@@ -81,25 +81,6 @@ function filterByString(search) {
   });
 }
 
-function highlightContent(search) {
-  let table = document.getElementById(id);
-  let tableBody = table.querySelector('tbody');
-  let rows = tableBody.rows;
-  if (search.length <= 0) {
-    return;
-  }
-  for (let i = 0; i < rows.length; i++) {
-    let cells = rows[i].cells;
-    for (let j = 1; j < cells.length; j++) {
-      let searchIn = cells[j].innerHTML.toLowerCase();
-      let position = searchIn.indexOf(search.toLowerCase());
-      if (position >= 0) {
-        let exchange = cells[j].innerHTML.substring(position, position + search.length);
-        cells[j].innerHTML = cells[j].innerHTML.replace(exchange, "<mark>" + exchange + "</mark>");
-      }
-    }
-  }
-}
 
 </script>
 
@@ -133,7 +114,7 @@ function highlightContent(search) {
         <tr v-for="(row,index) in filteredData.value">
           <td>{{ index + 1 }}</td>
           <td v-for="col in row">
-            {{ col }}
+            <MarkedText :content="col" :filter-string="filterString"/>
           </td>
         </tr>
         </tbody>
