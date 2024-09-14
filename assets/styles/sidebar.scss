@@ -1,11 +1,5 @@
 #navigation {
-    max-width: 100px;
-    @include media-breakpoint-up(sm) {
-        max-width: 200px;
-    }
-    @include media-breakpoint-up(md) {
-        max-width: 300px;
-    }
+
     top: 0;
 
     left: 0;
@@ -42,11 +36,20 @@
 
         .isRTL & {
             left: auto;
-            right: $ratio * $width
+            right: $ratio * $width;
+            justify-content: left;
         }
     }
 
     .sidebar-content {
+        width: 100px;
+        @include media-breakpoint-up(sm) {
+            width: 200px;
+        }
+        @include media-breakpoint-up(md) {
+            width: 300px;
+        }
+
         $distance: -500px;
         transition: all .3s ease-in-out;
 
