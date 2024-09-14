@@ -36,9 +36,9 @@ function onClose() {
       </svg>
     </div>
 
-    <div class="card sidebar-content rounded-0 position-relative bg-primary text-white h-100"
+    <div class="card sidebar-content rounded-0 position-absolute bg-primary text-white h-100"
          :class="{active: isActive}">
-      <div class="card-body">
+      <div class="card-body w-100">
         <div class="btn btn-close position-absolute" @click.prevent="onClose"></div>
         <!--Navigation-->
         <nav class="navbar">

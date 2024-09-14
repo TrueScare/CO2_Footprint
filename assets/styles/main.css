@@ -11845,20 +11845,9 @@ textarea.form-control-lg {
   }
 }
 #navigation {
-  max-width: 100px;
   top: 0;
   left: 0;
   right: auto;
-}
-@media (min-width: 576px) {
-  #navigation {
-    max-width: 200px;
-  }
-}
-@media (min-width: 768px) {
-  #navigation {
-    max-width: 300px;
-  }
 }
 .isRTL #navigation {
   left: auto;
@@ -11884,11 +11873,23 @@ textarea.form-control-lg {
 .isRTL .sidebar .btn-open {
   left: auto;
   right: -50px;
+  justify-content: left;
 }
 .sidebar .sidebar-content {
+  width: 100px;
   transition: all 0.3s ease-in-out;
   left: -500px;
   min-width: 100px;
+}
+@media (min-width: 576px) {
+  .sidebar .sidebar-content {
+    width: 200px;
+  }
+}
+@media (min-width: 768px) {
+  .sidebar .sidebar-content {
+    width: 300px;
+  }
 }
 .sidebar .sidebar-content.active {
   left: 0;
