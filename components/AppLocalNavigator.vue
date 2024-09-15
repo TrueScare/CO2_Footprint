@@ -1,7 +1,14 @@
 <script setup lang="js">
 const isActive = ref(false);
 const contents = ref([]);
-onMounted(() => {
+const path = reactive(useRouter().currentRoute.value);
+
+watch(useRouter().currentRoute, ()=>{
+  refresh();
+})
+
+function refresh() {
+  contents.value = [];
   let sections = document.querySelectorAll("section");
 
   sections.forEach((section) => {
@@ -14,8 +21,7 @@ onMounted(() => {
       text: labelElement.textContent
     });
   });
-});
-
+}
 
 function onOpen() {
   isActive.value = true;
@@ -25,12 +31,12 @@ function onClose() {
   isActive.value = false;
 }
 
-function toTop(){
-  window.scrollTo(0,0);
+function toTop() {
+  window.scrollTo(0, 0);
 }
 
-function toBottom(){
-  window.scrollTo(document.body.scrollHeight,0);
+function toBottom() {
+  window.scrollTo(document.body.scrollHeight, 0);
 }
 </script>
 

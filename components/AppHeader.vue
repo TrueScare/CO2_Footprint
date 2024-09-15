@@ -1,5 +1,4 @@
 <script setup lang="js">
-
 </script>
 
 <template>
@@ -8,8 +7,15 @@
     <div class="container">
       <div class="navbar navbar-light">
         <div class="navbar-brand">
-          <img alt="Logo" src="/iuwebsitelogo.png">
+          <NuxtLink to="/">
+            <img alt="Logo" src="/iuwebsitelogo.png">
+          </NuxtLink>
         </div>
+        <ul>
+          <li class="list-inline-item">
+            <NuxtLink to="/about">Über uns</NuxtLink>
+          </li>
+        </ul>
         <h1>Steps to Green</h1>
       </div>
     </div>
