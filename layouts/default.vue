@@ -1,6 +1,6 @@
 <template>
-  <AppHeader/>
-  <AppLocalNavigator/>
+  <LayoutAppHeader/>
+  <LayoutAppLocalNavigator/>
   <slot/>
-  <AppFooter/>
+  <LayoutAppFooter/>
 </template>

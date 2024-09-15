@@ -1,15 +1,21 @@
 <script setup lang="js">
+import {useNuxtApp} from "#app";
+
 const isActive = ref(false);
 const contents = ref([]);
 
-watch(useRouter().currentRoute, ()=>{
+useNuxtApp().hook("page:finish", () => {
   refresh();
-})
+});
+
+onMounted(() => {
+  refresh();
+});
 
 function refresh() {
   contents.value = [];
   let sections = document.querySelectorAll("section");
-
+  console.log(sections);
   sections.forEach((section) => {
     // this should be an id to another element!
     let labelledby = section.getAttribute("aria-labelledby");
@@ -32,6 +38,7 @@ function onClose() {
 
 function toTop() {
   window.scrollTo(0, 0);
+  onClose();
 }
 
 function toBottom() {
@@ -62,7 +69,7 @@ function toBottom() {
               <button class="btn btn-link p-0" @click.prevent="toTop()">Zurück nach oben</button>
             </li>
             <li v-for="content in contents">
-              <a :href="content.ref">{{ content.text }}</a>
+              <a :href="content.ref" @click="onClose">{{ content.text }}</a>
             </li>
           </ul>
         </nav>
