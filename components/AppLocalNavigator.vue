@@ -24,6 +24,14 @@ function onOpen() {
 function onClose() {
   isActive.value = false;
 }
+
+function toTop(){
+  window.scrollTo(0,0);
+}
+
+function toBottom(){
+  window.scrollTo(document.body.scrollHeight,0);
+}
 </script>
 
 <template>
@@ -45,6 +53,9 @@ function onClose() {
           <h5 class="text-white">Unsere Inhalte:</h5>
           <hr class="w-100">
           <ul class="navbar-nav" ref="sidebar_content">
+            <li>
+              <button class="btn btn-link p-0" @click.prevent="toTop()">Zurück nach oben</button>
+            </li>
             <li v-for="content in contents">
               <a :href="content.ref">{{ content.text }}</a>
             </li>
