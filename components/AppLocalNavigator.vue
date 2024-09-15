@@ -1,7 +1,6 @@
 <script setup lang="js">
 const isActive = ref(false);
 const contents = ref([]);
-const path = reactive(useRouter().currentRoute.value);
 
 watch(useRouter().currentRoute, ()=>{
   refresh();
