@@ -6,7 +6,9 @@
 
 <script setup lang="js">
 useHead({
-  title: "Steps to Green"
+  title: "Steps to Green",
+  author: "Liam Mefus",
+  keywords: "co2, footprint, iu internationale hochschule, web development"
 });
 
 import('~/assets/styles/main.css');

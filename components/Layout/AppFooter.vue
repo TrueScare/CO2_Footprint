@@ -8,7 +8,7 @@
     <div class="container py-2">
       <ul class="list-inline">
         <li class="list-inline-item">
-          <NuxtLink to="/impressum" class="text-white">Impresusm</NuxtLink>
+          <NuxtLink to="/impressum" class="text-white">Impressum</NuxtLink>
         </li>
       </ul>
     </div>

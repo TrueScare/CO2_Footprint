@@ -15,7 +15,6 @@ onMounted(() => {
 function refresh() {
   contents.value = [];
   let sections = document.querySelectorAll("section");
-  console.log(sections);
   sections.forEach((section) => {
     // this should be an id to another element!
     let labelledby = section.getAttribute("aria-labelledby");

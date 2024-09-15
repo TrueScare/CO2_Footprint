@@ -1,5 +1,7 @@
 <script setup lang="js">
-
+useHead({
+  title: "Über uns"
+});
 </script>
 
 <template>
