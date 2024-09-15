@@ -10,9 +10,6 @@
         <li class="list-inline-item">
           <NuxtLink to="/impressum" class="text-white">Impresusm</NuxtLink>
         </li>
-        <li class="list-inline-item">
-          <NuxtLink to="/faq" class="text-white">FAQ</NuxtLink>
-        </li>
       </ul>
     </div>
   </footer>
