@@ -7,7 +7,7 @@
 <script setup lang="js">
 useHead({
   title: "Steps to Green"
-})
+});
 
 import('~/assets/styles/main.css');
 onMounted(() => {
