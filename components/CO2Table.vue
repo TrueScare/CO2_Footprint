@@ -5,6 +5,7 @@ const props = defineProps({
 });
 
 const data = reactive([]);
+const properties = reactive([]);
 const filteredData = reactive([]);
 const activeCol = ref(null);
 const asc = ref(true);
@@ -20,64 +21,54 @@ onMounted(() => {
 
 function refresh() {
   loading.value = true;
-  fetch(props.dataUrl).then((res) => {
-    return res.text();
-  }).then((res) => {
-    data.value = processLines(res);
+  queryContent('countries').findOne().then((res) => {
+    data.value = res.body;
     filteredData.value = data.value;
+    if (res.body.length > 0) {
+      let entry = res.body[0];
+      properties.value = Object.getOwnPropertyNames(entry);
+    }
 
-    filterByString(filterString.value);
-    sortTable(activeCol.value);
+    // filterByString(filterString.value);
     loading.value = false;
   });
 }
 
-function processLines(string) {
-  let res = [];
-
-  string.split("\n").forEach((row) => {
-    if (row !== "") {
-      res.push(row.split(";"));
-    }
-  });
-
-  return res;
-}
-
-function sortTable(column) {
-  if (activeCol.value !== column) {
+function sortTable(property) {
+  if (activeCol.value !== property) {
     asc.value = true;
   } else {
     asc.value = !asc.value;
   }
-  activeCol.value = column;
 
-  switch (column) {
-    case 0: {
-      if (asc.value) {
-        filteredData.value.sort((a, b) => a[column].localeCompare(b[column]));
+  activeCol.value = property;
+
+  filteredData.value.sort((a, b) => {
+    if (asc.value) {
+      if (!isNaN(parseFloat(a[property]))
+          && !isNaN(parseFloat(b[property]))
+      ) {
+        return a[property] - b[property]
       } else {
-        filteredData.value.sort((a, b) => -1 * (a[column].localeCompare(b[column])));
+        return a[property].localeCompare(b[property]);
+      }
+    } else {
+      if (!isNaN(parseFloat(a[property]))
+          && !isNaN(parseFloat(b[property]))
+      ) {
+        return b[property] - a[property];
+      } else {
+        return -1 * (a[property].localeCompare(b[property]));
       }
     }
-      break;
-    default: {
-      if (asc.value) {
-        filteredData.value.sort((a, b) => a[column] - b[column]);
-      } else {
-        filteredData.value.sort((a, b) => b[column] - a[column]);
-      }
-    }
-      break;
-  }
+  });
 }
 
 function filterByString(search) {
-  filteredData.value = data.value.filter((row) => {
-    //see if the array inside the column filters a result. if so the length should be greater than 0
-    return row.filter((entry) => {
-      return entry.toLowerCase().includes(search.toLowerCase());
-    }).length > 0;
+  filteredData.value = data.value.filter((row)=>{
+      return Object.values(row).filter((entry)=>{
+        return entry.toLowerCase().includes(search.toLowerCase());
+      }). length > 0;
   });
 }
 
@@ -98,15 +89,7 @@ function filterByString(search) {
         <thead class="table-dark">
         <tr>
           <th scope="col">Position</th>
-          <th scope="col" @click="sortTable(0)">Land</th>
-          <th scope="col" @click="sortTable(1)">1970</th>
-          <th scope="col" @click="sortTable(2)">1990</th>
-          <th scope="col" @click="sortTable(3)">2005</th>
-          <th scope="col" @click="sortTable(4)">2017</th>
-          <th scope="col" @click="sortTable(5)">2020</th>
-          <th scope="col" @click="sortTable(6)">Pro Einwohner (2022)</th>
-          <th scope="col" @click="sortTable(7)">Anteil der Welt in %</th>
-          <th scope="col" @click="sortTable(8)">Veränderung (1990 = 100%)</th>
+          <th v-for="property in properties.value" scope="col" @click="sortTable(property)">{{ property }}</th>
         </tr>
         </thead>
         <tbody>
