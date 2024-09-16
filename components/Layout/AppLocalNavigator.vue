@@ -1,9 +1,20 @@
 <script setup lang="js">
+import {useNuxtApp} from "#app";
+
 const isActive = ref(false);
 const contents = ref([]);
-onMounted(() => {
-  let sections = document.querySelectorAll("section");
 
+useNuxtApp().hook("page:finish", () => {
+  refresh();
+});
+
+onMounted(() => {
+  refresh();
+});
+
+function refresh() {
+  contents.value = [];
+  let sections = document.querySelectorAll("section");
   sections.forEach((section) => {
     // this should be an id to another element!
     let labelledby = section.getAttribute("aria-labelledby");
@@ -14,8 +25,7 @@ onMounted(() => {
       text: labelElement.textContent
     });
   });
-});
-
+}
 
 function onOpen() {
   isActive.value = true;
@@ -23,6 +33,15 @@ function onOpen() {
 
 function onClose() {
   isActive.value = false;
+}
+
+function toTop() {
+  window.scrollTo(0, 0);
+  onClose();
+}
+
+function toBottom() {
+  window.scrollTo(document.body.scrollHeight, 0);
 }
 </script>
 
@@ -45,8 +64,11 @@ function onClose() {
           <h5 class="text-white">Unsere Inhalte:</h5>
           <hr class="w-100">
           <ul class="navbar-nav" ref="sidebar_content">
+            <li>
+              <button class="btn btn-link p-0" @click.prevent="toTop()">Zurück nach oben</button>
+            </li>
             <li v-for="content in contents">
-              <a :href="content.ref">{{ content.text }}</a>
+              <a :href="content.ref" @click="onClose">{{ content.text }}</a>
             </li>
           </ul>
         </nav>

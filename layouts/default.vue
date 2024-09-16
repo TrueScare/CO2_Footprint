@@ -1,6 +1,8 @@
 <template>
-  <AppHeader/>
-  <AppLocalNavigator/>
+  <LayoutAppHeader/>
+  <LayoutAppLocalNavigator/>
   <slot/>
-  <AppFooter/>
+  <LayoutAppFooter/>
 </template>
+<script setup lang="ts">
+</script>

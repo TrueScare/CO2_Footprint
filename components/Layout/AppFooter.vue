@@ -6,7 +6,11 @@
   <footer class="bg-primary text-white">
     <!--legal notice-->
     <div class="container py-2">
-      some shit i have to come up with
+      <ul class="list-inline">
+        <li class="list-inline-item">
+          <NuxtLink to="/impressum" class="text-white">Impressum</NuxtLink>
+        </li>
+      </ul>
     </div>
   </footer>
 </template>

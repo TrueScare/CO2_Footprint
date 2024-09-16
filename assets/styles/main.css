@@ -11909,9 +11909,11 @@ textarea.form-control-lg {
   right: 5px;
   top: 5px;
 }
+.sidebar .sidebar-content button,
 .sidebar .sidebar-content a {
   color: #fff;
 }
+.sidebar .sidebar-content button:hover,
 .sidebar .sidebar-content a:hover {
   color: #006600;
 }
