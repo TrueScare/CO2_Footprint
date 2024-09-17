@@ -100,7 +100,7 @@ function filterByString(search) {
         <input id="search" class="sidebar_content" type="text" placeholder="Suche..." v-model="filterString">
       </label>
     </div>
-    <div class="table-responsive">
+    <div class="table-responsive" v-if="dataUrl">
       <table class="caption-top table table-striped table-hover">
         <thead class="table-dark">
         <tr>

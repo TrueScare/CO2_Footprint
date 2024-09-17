@@ -25,6 +25,9 @@
           <li class="nav-item">
             <NuxtLink to="/faq" class="nav-link text-white">FAQ</NuxtLink>
           </li>
+          <li class="nav-item">
+            <NuxtLink to="/data-sourcing" class="nav-link text-white">Unsere Daten</NuxtLink>
+          </li>
         </ul>
       </div>
     </nav>

@@ -1,0 +1,35 @@
+Unternehmen,1970,1990,2005,2017,2020,Land
+Microsoft,0,0,0.002,0.004,0.003,USA
+Apple,0,0.0005,0.0015,0.003,0.0022,USA
+Tesla,0,0,0.01,0.015,0.02,USA
+Amazon,0,0,0.005,0.02,0.025,USA
+ThyssenKrupp,0.005,0.01,0.015,0.012,0.01,Germany
+Winkelmann,0.0005,0.0008,0.0012,0.0015,0.0014,Germany
+Kaldewei,0.0003,0.0005,0.0008,0.001,0.0009,Germany
+SAP,0,0.0002,0.0005,0.0012,0.0008,Germany
+Siemens,0.003,0.005,0.008,0.0065,0.005,Germany
+AstraZeneca,0.0002,0.0003,0.0006,0.001,0.0008,United Kingdom
+Line,0,0,0,0.0002,0.00025,United Kingdom
+Shell,0.05,0.06,0.07,0.075,0.07,United Kingdom
+Unilever,0.015,0.018,0.022,0.02,0.018,United Kingdom
+HSBC,0.001,0.0015,0.0025,0.003,0.0028,United Kingdom
+Spotify,0,0,0,0.00005,0.000075,Sweden
+Volvo Group,0.01,0.012,0.015,0.014,0.012,Sweden
+EQT,0,0,0.0001,0.0003,0.00035,Sweden
+Atlas Copco,0.002,0.0025,0.0035,0.003,0.0025,Sweden
+Investor AB,0.0001,0.0002,0.0003,0.00035,0.0004,Sweden
+Toyota,0.015,0.02,0.03,0.025,0.022,Japan
+Mitsubishi UFJ Financial,0.0005,0.0007,0.001,0.0012,0.0011,Japan
+Keyence,0.0001,0.0002,0.0004,0.0005,0.0004,Japan
+Sony,0.0015,0.002,0.0035,0.0032,0.0028,Japan
+SoftBank,0,0,0.001,0.002,0.0015,Japan
+Reliance Industries,0.03,0.035,0.04,0.045,0.042,India
+Tata Consultancy Services,0,0.0002,0.0005,0.0008,0.00075,India
+HDFC Bank,0.00005,0.0001,0.0002,0.00025,0.0003,India
+Bharti Airtel,0,0,0.0002,0.0004,0.0005,India
+ICICI Bank,0.0001,0.0002,0.0003,0.0004,0.00045,India
+QNB Finansbank,0.00003,0.00006,0.0001,0.00015,0.0002,Turkiye
+Garanti Bank,0.00002,0.00004,0.00008,0.0001,0.00012,Turkiye
+Koc Holding,0.0005,0.0007,0.0009,0.001,0.00095,Turkiye
+Turkish Airlines,0.005,0.0065,0.008,0.01,0.012,Turkiye
+BIM Birlesik Magazalar,0,0.0001,0.0002,0.0003,0.0004,Turkiye
