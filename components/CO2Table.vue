@@ -1,27 +1,39 @@
 <script setup lang="js">
 
-const props = defineProps({
-  dataUrl: String,
-});
 
+const dataUrl = ref("")
 const data = reactive([]);
 const properties = reactive([]);
 const filteredData = reactive([]);
+const contentSelection = reactive([]);
 const activeCol = ref(null);
 const asc = ref(true);
 const filterString = ref("");
-const id = useId();
 const loading = ref(false);
 
 watch(filterString, () => filterByString(filterString.value));
+watch(dataUrl, () => refreshTable());
 
 onMounted(() => {
-  refresh();
+  refreshContentSelect();
 });
 
-function refresh() {
+function refreshContentSelect() {
+  contentSelection.value = [];
+  queryContent().find().then((res) => {
+    res.forEach((source) => {
+      contentSelection.value.push({
+        title: source.title,
+        source: source._stem,
+      });
+    });
+    contentSelection.value.sort((a, b) => a.title.localeCompare(b.title));
+  });
+}
+
+function refreshTable() {
   loading.value = true;
-  queryContent('countries').findOne().then((res) => {
+  queryContent(dataUrl.value).findOne().then((res) => {
     data.value = res.body;
     filteredData.value = data.value;
     if (res.body.length > 0) {
@@ -29,7 +41,7 @@ function refresh() {
       properties.value = Object.getOwnPropertyNames(entry);
     }
 
-    // filterByString(filterString.value);
+    filterByString(filterString.value);
     loading.value = false;
   });
 }
@@ -65,10 +77,10 @@ function sortTable(property) {
 }
 
 function filterByString(search) {
-  filteredData.value = data.value.filter((row)=>{
-      return Object.values(row).filter((entry)=>{
-        return entry.toLowerCase().includes(search.toLowerCase());
-      }). length > 0;
+  filteredData.value = data.value.filter((row) => {
+    return Object.values(row).filter((entry) => {
+      return entry.toLowerCase().includes(search.toLowerCase());
+    }).length > 0;
   });
 }
 
@@ -81,11 +93,15 @@ function filterByString(search) {
     <span>alle absoluten angaben in Tonnen</span>
     <div class="controls">
       <label>
+        <select id="content_select" v-model="dataUrl">
+          <option disabled selected value="">Bitte Datenset auswählen</option>
+          <option v-for="content in contentSelection.value" :value="content.source">{{ content.title }}</option>
+        </select>
         <input id="search" class="sidebar_content" type="text" placeholder="Suche..." v-model="filterString">
       </label>
     </div>
     <div class="table-responsive">
-      <table class="caption-top table table-striped table-hover" :id="id">
+      <table class="caption-top table table-striped table-hover">
         <thead class="table-dark">
         <tr>
           <th scope="col">Position</th>
