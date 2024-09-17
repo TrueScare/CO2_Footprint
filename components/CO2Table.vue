@@ -11,6 +11,23 @@ const asc = ref(true);
 const filterString = ref("");
 const loading = ref(false);
 
+const textProperties = computed(()=>{
+  return properties.filter((item) => {
+    return !item.isNumber;
+  });
+});
+
+const uniqueValuesForProperty = computed((property) =>{
+  let values = [];
+  data.value.forEach((entry) => {
+    if(values.indexOf(entry[property]) >= 0) {
+      values.push(entry[property]);
+    }
+  });
+  return values;
+});
+
+
 watch(filterString, () => filterByString(filterString.value));
 watch(dataUrl, () => refreshTable());
 
@@ -36,9 +53,16 @@ function refreshTable() {
   queryContent(dataUrl.value).findOne().then((res) => {
     data.value = res.body;
     filteredData.value = data.value;
+    properties.value = [];
     if (res.body.length > 0) {
       let entry = res.body[0];
-      properties.value = Object.getOwnPropertyNames(entry);
+      let propertyNames = Object.getOwnPropertyNames(entry);
+      propertyNames.forEach((property) => {
+        properties.value.push({
+          name: property,
+          isNumber: !isNaN(parseFloat(entry[property])),
+        });
+      });
     }
 
     filterByString(filterString.value);
@@ -46,7 +70,7 @@ function refreshTable() {
   });
 }
 
-function sortTable(property) {
+function sortTable(property, isNumber) {
   if (activeCol.value !== property) {
     asc.value = true;
   } else {
@@ -57,17 +81,13 @@ function sortTable(property) {
 
   filteredData.value.sort((a, b) => {
     if (asc.value) {
-      if (!isNaN(parseFloat(a[property]))
-          && !isNaN(parseFloat(b[property]))
-      ) {
+      if (isNumber) {
         return a[property] - b[property]
       } else {
         return a[property].localeCompare(b[property]);
       }
     } else {
-      if (!isNaN(parseFloat(a[property]))
-          && !isNaN(parseFloat(b[property]))
-      ) {
+      if (isNumber) {
         return b[property] - a[property];
       } else {
         return -1 * (a[property].localeCompare(b[property]));
@@ -83,8 +103,6 @@ function filterByString(search) {
     }).length > 0;
   });
 }
-
-
 </script>
 
 <template>
@@ -97,6 +115,10 @@ function filterByString(search) {
           <option disabled selected value="">Bitte Datenset auswählen</option>
           <option v-for="content in contentSelection.value" :value="content.source">{{ content.title }}</option>
         </select>
+        <select v-for="textProperty in textProperties">
+          <option disabled selected value="">Bitte auswählen...</option>
+          <option v-for="uniqueValue in uniqueValuesForProperty(textProperty)" :value="uniqueValue">{{uniqueValue}}</option>
+        </select>
         <input id="search" class="sidebar_content" type="text" placeholder="Suche..." v-model="filterString">
       </label>
     </div>
@@ -105,7 +127,7 @@ function filterByString(search) {
         <thead class="table-dark">
         <tr>
           <th scope="col">Position</th>
-          <th v-for="property in properties.value" scope="col" @click="sortTable(property)">{{ property }}</th>
+          <th v-for="property in properties.value" scope="col" @click="sortTable(property.name, property.isNumber)">{{ property.name }}</th>
         </tr>
         </thead>
         <tbody>
