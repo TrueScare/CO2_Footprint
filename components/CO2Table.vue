@@ -2,33 +2,17 @@
 
 
 const dataUrl = ref("")
-const data = reactive([]);
-const properties = reactive([]);
-const filteredData = reactive([]);
-const contentSelection = reactive([]);
+const data = ref([]);
+const properties = ref([]);
+const filteredData = ref([]);
+const filterProperties = ref({});
+const contentSelection = ref([]);
 const activeCol = ref(null);
 const asc = ref(true);
 const filterString = ref("");
 const loading = ref(false);
 
-const textProperties = computed(()=>{
-  return properties.filter((item) => {
-    return !item.isNumber;
-  });
-});
-
-const uniqueValuesForProperty = computed((property) =>{
-  let values = [];
-  data.value.forEach((entry) => {
-    if(values.indexOf(entry[property]) >= 0) {
-      values.push(entry[property]);
-    }
-  });
-  return values;
-});
-
-
-watch(filterString, () => filterByString(filterString.value));
+watch(filterString, () => filter(filterString.value));
 watch(dataUrl, () => refreshTable());
 
 onMounted(() => {
@@ -65,7 +49,7 @@ function refreshTable() {
       });
     }
 
-    filterByString(filterString.value);
+    filter(filterString.value);
     loading.value = false;
   });
 }
@@ -96,12 +80,46 @@ function sortTable(property, isNumber) {
   });
 }
 
-function filterByString(search) {
+function filter(search = null) {
   filteredData.value = data.value.filter((row) => {
-    return Object.values(row).filter((entry) => {
-      return entry.toLowerCase().includes(search.toLowerCase());
+    let hasSearch = Object.values(row).filter((entry) => {
+      return search !== null ? entry.toLowerCase().includes(search.toLowerCase()) : true;
     }).length > 0;
+
+    let hasProperty = true;
+    let properties = Object.getOwnPropertyNames(filterProperties.value);
+
+    if (properties.length > 0) {
+      properties.forEach((property) => {
+        if (filterProperties.value[property] !== "" && row[property] !== filterProperties.value[property]) {
+          hasProperty = false;
+        }
+      });
+    }
+    return hasSearch && hasProperty;
   });
+}
+
+function textProperties() {
+  if (properties && properties.value && properties.value.length >= 0) {
+    return properties.value.filter((item) => {
+      return !item.isNumber;
+    });
+  }
+}
+
+function uniqueValuesForProperty(property) {
+  let values = [];
+  data.value.forEach((entry) => {
+    if (values.indexOf(entry[property]) < 0) {
+      values.push(entry[property]);
+    }
+  });
+  return values;
+}
+
+function resetFilter(){
+  filterProperties.value = {};
 }
 </script>
 
@@ -110,29 +128,56 @@ function filterByString(search) {
     <h2 id="table_headline">CO₂ Fußabdruck der Länder</h2>
     <span>alle absoluten angaben in Tonnen</span>
     <div class="controls">
-      <label>
-        <select id="content_select" v-model="dataUrl">
-          <option disabled selected value="">Bitte Datenset auswählen</option>
-          <option v-for="content in contentSelection.value" :value="content.source">{{ content.title }}</option>
-        </select>
-        <select v-for="textProperty in textProperties">
-          <option disabled selected value="">Bitte auswählen...</option>
-          <option v-for="uniqueValue in uniqueValuesForProperty(textProperty)" :value="uniqueValue">{{uniqueValue}}</option>
-        </select>
-        <input id="search" class="sidebar_content" type="text" placeholder="Suche..." v-model="filterString">
-      </label>
+      <div class="input-group">
+        <label>
+          Datenset
+          <select id="content_select"
+                  v-model="dataUrl"
+                  class="form-control" @change="resetFilter()">
+            <option disabled selected value="">Bitte Datenset auswählen</option>
+            <option v-for="content in contentSelection" :value="content.source">{{ content.title }}</option>
+          </select>
+        </label>
+      </div>
+      <div class="input-group">
+        <label v-for="textProperty in textProperties()">
+          {{ textProperty.name }}
+          <select v-model="filterProperties[textProperty.name]"
+                  @change="filter()"
+                  class="form-control">
+            <option selected :value="filterProperties[textProperty.name]">Bitte auswählen...</option>
+            <option
+                v-for="uniqueValue in uniqueValuesForProperty(textProperty.name)"
+                :value="uniqueValue"
+                class="form-control">
+              {{ uniqueValue }}
+            </option>
+          </select>
+        </label>
+        <label v-if="data.length > 0">
+          Inhaltssuche
+          <input id="search"
+                 class="form-control"
+                 type="text"
+                 placeholder="Suche..."
+                 v-model="filterString">
+        </label>
+      </div>
     </div>
     <div class="table-responsive" v-if="dataUrl">
       <table class="caption-top table table-striped table-hover">
         <thead class="table-dark">
         <tr>
           <th scope="col">Position</th>
-          <th v-for="property in properties.value" scope="col" @click="sortTable(property.name, property.isNumber)">{{ property.name }}</th>
+          <th v-for="property in properties" scope="col" @click="sortTable(property.name, property.isNumber)">
+            {{ property.name }}
+          </th>
         </tr>
         </thead>
         <tbody>
-        <tr v-if="loading">Lädt...</tr>
-        <tr v-for="(row,index) in filteredData.value">
+        <tr v-if="loading"></tr>
+        <tr v-if="!loading && filteredData.length <= 0">Leider keine Ergebnisse vorhanden.</tr>
+        <tr v-for="(row,index) in filteredData">
           <td>{{ index + 1 }}</td>
           <td v-for="col in row">
             <MarkedText :content="col" :filter-string="filterString"/>
