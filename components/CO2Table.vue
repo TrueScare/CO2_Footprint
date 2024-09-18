@@ -138,6 +138,15 @@ function resetFilter(){
             <option v-for="content in contentSelection" :value="content.source">{{ content.title }}</option>
           </select>
         </label>
+
+        <label v-if="data.length > 0">
+        Inhaltssuche
+          <input id="search"
+                 class="form-control"
+                 type="text"
+                 placeholder="Suche..."
+                 v-model="filterString">
+        </label>
       </div>
       <div class="input-group">
         <label v-for="textProperty in textProperties()">
@@ -145,7 +154,7 @@ function resetFilter(){
           <select v-model="filterProperties[textProperty.name]"
                   @change="filter()"
                   class="form-control">
-            <option selected :value="filterProperties[textProperty.name]">Bitte auswählen...</option>
+            <option selected value="">Bitte auswählen...</option>
             <option
                 v-for="uniqueValue in uniqueValuesForProperty(textProperty.name)"
                 :value="uniqueValue"
@@ -153,14 +162,6 @@ function resetFilter(){
               {{ uniqueValue }}
             </option>
           </select>
-        </label>
-        <label v-if="data.length > 0">
-          Inhaltssuche
-          <input id="search"
-                 class="form-control"
-                 type="text"
-                 placeholder="Suche..."
-                 v-model="filterString">
         </label>
       </div>
     </div>
