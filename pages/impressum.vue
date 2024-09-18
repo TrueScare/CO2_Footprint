@@ -8,6 +8,7 @@
     <p>Das könnte z.B. so Aussehen:</p>
 
     <table>
+      <tbody>
       <tr>
         <td>Seiteninhaber</td>
         <td>MaxMusetermann</td>
@@ -36,6 +37,7 @@
         <td>Telefon</td>
         <td><a href="tel:+4901234555555555">+4901234555555555</a></td>
       </tr>
+      </tbody>
     </table>
   </section>
 </template>

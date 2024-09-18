@@ -10,7 +10,7 @@
     takimata sanctus est Lorem ipsum dolor sit amet.
   </section>
 
-  <CO2Table data-url="/footprints.csv"/>
+  <CO2Table data-url="countries"/>
 </template>
 <script setup lang="js">
 </script>
