@@ -11936,4 +11936,8 @@ html {
   scroll-behavior: smooth;
 }
 
+.input-group {
+  gap: 10px;
+}
+
 /*# sourceMappingURL=main.css.map */
