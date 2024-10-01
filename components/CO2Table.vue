@@ -190,5 +190,7 @@ function resetFilter(){
 </template>
 
 <style scoped>
-
+.controls {
+  margin: 30px 0
+}
 </style>
