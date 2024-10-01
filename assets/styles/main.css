@@ -11877,15 +11877,9 @@ textarea.form-control-lg {
   justify-content: left;
 }
 .sidebar .sidebar-content {
-  width: 100px;
+  width: 200px;
   transition: all 0.3s ease-in-out;
   left: -500px;
-  min-width: 100px;
-}
-@media (min-width: 576px) {
-  .sidebar .sidebar-content {
-    width: 200px;
-  }
 }
 @media (min-width: 768px) {
   .sidebar .sidebar-content {
@@ -11934,6 +11928,11 @@ header .navbar-brand img {
 
 html {
   scroll-behavior: smooth;
+}
+
+section {
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 
 /*# sourceMappingURL=main.css.map */
