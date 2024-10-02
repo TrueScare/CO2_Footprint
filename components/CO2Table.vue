@@ -118,76 +118,74 @@ function uniqueValuesForProperty(property) {
   return values;
 }
 
-function resetFilter(){
+function resetFilter() {
   filterProperties.value = {};
 }
 </script>
 
 <template>
-  <section class="container" id="co2-table" aria-labelledby="table_headline">
-    <h2 id="table_headline">CO₂ Fußabdruck der Länder</h2>
-    <span>alle absoluten angaben in Tonnen</span>
-    <div class="controls">
-      <div class="input-group">
-        <label>
-          Datenset
-          <select id="content_select"
-                  v-model="dataUrl"
-                  class="form-control" @change="resetFilter()">
-            <option disabled selected value="">Bitte Datenset auswählen</option>
-            <option v-for="content in contentSelection" :value="content.source">{{ content.title }}</option>
-          </select>
-        </label>
 
-        <label v-if="data.length > 0">
+  <span class="text-muted">alle absoluten angaben in Tonnen</span>
+  <div class="controls">
+    <div class="input-group">
+      <label>
+        Datenset
+        <select id="content_select"
+                v-model="dataUrl"
+                class="form-control" @change="resetFilter()">
+          <option disabled selected value="">Bitte Datenset auswählen</option>
+          <option v-for="content in contentSelection" :value="content.source">{{ content.title }}</option>
+        </select>
+      </label>
+
+      <label v-if="data.length > 0">
         Inhaltssuche
-          <input id="search"
-                 class="form-control"
-                 type="text"
-                 placeholder="Suche..."
-                 v-model="filterString">
-        </label>
-      </div>
-      <div class="input-group">
-        <label v-for="textProperty in textProperties()">
-          {{ textProperty.name }}
-          <select v-model="filterProperties[textProperty.name]"
-                  @change="filter()"
-                  class="form-control">
-            <option selected value="">Bitte auswählen...</option>
-            <option
-                v-for="uniqueValue in uniqueValuesForProperty(textProperty.name)"
-                :value="uniqueValue"
+        <input id="search"
+               class="form-control"
+               type="text"
+               placeholder="Suche..."
+               v-model="filterString">
+      </label>
+    </div>
+    <div class="input-group">
+      <label v-for="textProperty in textProperties()">
+        {{ textProperty.name }}
+        <select v-model="filterProperties[textProperty.name]"
+                @change="filter()"
                 class="form-control">
-              {{ uniqueValue }}
-            </option>
-          </select>
-        </label>
-      </div>
+          <option selected value="">Bitte auswählen...</option>
+          <option
+              v-for="uniqueValue in uniqueValuesForProperty(textProperty.name)"
+              :value="uniqueValue"
+              class="form-control">
+            {{ uniqueValue }}
+          </option>
+        </select>
+      </label>
     </div>
-    <div class="table-responsive" v-if="dataUrl">
-      <table class="caption-top table table-striped table-hover">
-        <thead class="table-dark">
-        <tr>
-          <th scope="col">Position</th>
-          <th v-for="property in properties" scope="col" @click="sortTable(property.name, property.isNumber)">
-            {{ property.name }}
-          </th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr v-if="loading"></tr>
-        <tr v-if="!loading && filteredData.length <= 0">Leider keine Ergebnisse vorhanden.</tr>
-        <tr v-for="(row,index) in filteredData">
-          <td>{{ index + 1 }}</td>
-          <td v-for="col in row">
-            <MarkedText :content="col" :filter-string="filterString"/>
-          </td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
+  </div>
+  <div class="table-responsive" v-if="dataUrl">
+    <table class="caption-top table table-striped table-hover">
+      <thead class="table-dark">
+      <tr>
+        <th scope="col">Position</th>
+        <th v-for="property in properties" scope="col" @click="sortTable(property.name, property.isNumber)">
+          {{ property.name }}
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr v-if="loading"></tr>
+      <tr v-if="!loading && filteredData.length <= 0">Leider keine Ergebnisse vorhanden.</tr>
+      <tr v-for="(row,index) in filteredData">
+        <td>{{ index + 1 }}</td>
+        <td v-for="col in row">
+          <MarkedText :content="col" :filter-string="filterString"/>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
 </template>
 
 <style scoped>
