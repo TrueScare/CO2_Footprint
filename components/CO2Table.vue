@@ -1,6 +1,5 @@
 <script setup lang="js">
 
-
 const dataUrl = ref("")
 const data = ref([]);
 const properties = ref([]);

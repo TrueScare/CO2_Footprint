@@ -34,11 +34,11 @@ const imageClasses = computed(() => {
   <article class="card align-items-lg-center overflow-hidden"
            :class="rowAlign"
            :aria-labelledby="id">
-    <div class="col-12 col-md-3 image-container"
+    <div class="col-12 col-md-4 image-container"
     :style="'background-image: url('+ props.src +');'">
 
     </div>
-    <div class="col-12 col-md-9">
+    <div class="col-12 col-md-8">
       <div class="card-body">
         <h3 class="card-title" :id="id">{{ props.title }}</h3>
         <div class="text-body">

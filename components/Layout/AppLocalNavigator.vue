@@ -61,14 +61,18 @@ function toBottom() {
         <div class="btn btn-close position-absolute" @click.prevent="onClose"></div>
         <!--Navigation-->
         <nav class="navbar">
-          <h5 class="text-white">Unsere Inhalte:</h5>
+          <h5 class="text-white">Auf dieser Seite:</h5>
           <hr class="w-100">
           <ul class="navbar-nav" ref="sidebar_content">
-            <li>
-              <button class="btn btn-link p-0" @click.prevent="toTop()">Zurück nach oben</button>
+            <li class="pb-1">
+              <button class="btn btn-link p-0 text-decoration-none" @click.prevent="toTop()">Zurück nach oben</button>
             </li>
-            <li v-for="content in contents">
-              <a :href="content.ref" @click="onClose">{{ content.text }}</a>
+            <li class="pb-1"
+                v-for="content in contents"
+            >
+              <a :href="content.ref"
+                 class="text-decoration-none"
+                 @click="onClose">{{ content.text }}</a>
             </li>
           </ul>
         </nav>

@@ -13,7 +13,7 @@
         </div>
 
 
-        <h1 class="text-white">Steps to Green</h1>
+        <div class="text-white h1">Steps to Green</div>
       </div>
     </div>
     <nav class="nav navbar navbar-expand bg-primary">
@@ -24,9 +24,6 @@
           </li>
           <li class="nav-item">
             <NuxtLink to="/faq" class="nav-link text-white">FAQ</NuxtLink>
-          </li>
-          <li class="nav-item">
-            <NuxtLink to="/data-sourcing" class="nav-link text-white">Unsere Daten</NuxtLink>
           </li>
         </ul>
       </div>
