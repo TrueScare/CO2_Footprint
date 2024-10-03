@@ -8,12 +8,12 @@
       <div class="navbar navbar-light">
         <div class="navbar-brand">
           <NuxtLink to="/">
-            <img alt="Logo" src="/iuwebsitelogo.png">
+            <img alt="Logo" src="/iuwebsitelogo_white.png">
           </NuxtLink>
         </div>
 
 
-        <h1>Steps to Green</h1>
+        <h1 class="text-white">Steps to Green</h1>
       </div>
     </div>
     <nav class="nav navbar navbar-expand bg-primary">
@@ -34,6 +34,11 @@
   </header>
 </template>
 
-<style scoped>
-
+<style scoped lang="scss">
+header {
+  background-image: url("/img/himmel_wiese.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+}
 </style>

@@ -4,6 +4,11 @@ const props = defineProps({
   id: {
     type: String,
     required: false
+  },
+  fullwidth: {
+    type: Boolean,
+    required: false,
+    default: false
   }
 });
 
@@ -23,7 +28,7 @@ const titleId = computed(() => {
 
 </script>
 <template>
-  <section class="container" :id="sectionId" :aria-labelledby="titleId">
+  <section :class="{container: !fullwidth}" :id="sectionId" :aria-labelledby="titleId">
     <h2 :id="titleId">{{ props.title }}</h2>
     <div class="section-body">
       <slot/>
