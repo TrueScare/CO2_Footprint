@@ -1,17 +1,42 @@
 <script setup lang="js">
+
 const props = defineProps({
   src: String,
   alt: String,
-  title: String
+  title: String,
+  imageRight: {
+    type: Boolean,
+    default: false,
+    required: false
+  }
 });
 
 const id = useId();
+
+const rowAlign = computed(() => {
+  if (props.imageRight) {
+    return "flex-md-row-reverse image-right";
+  } else {
+    return "flex-md-row image-left";
+  }
+});
+
+const imageClasses = computed(() => {
+  if (props.imageRight) {
+    return "rounded-end";
+  }
+
+  return "rounded-start";
+});
 </script>
 
 <template>
-  <article class="card flex-md-row align-items-lg-center" :aria-labelledby="id">
-    <div class="col-12 col-md-3">
-      <img class="card-image-top rounded" :src="props.src" :alt="props.alt"/>
+  <article class="card align-items-lg-center overflow-hidden"
+           :class="rowAlign"
+           :aria-labelledby="id">
+    <div class="col-12 col-md-3 image-container"
+    :style="'background-image: url('+ props.src +');'">
+
     </div>
     <div class="col-12 col-md-9">
       <div class="card-body">
@@ -23,20 +48,19 @@ const id = useId();
     </div>
   </article>
 </template>
-<style scoped>
+<style scoped lang="scss">
 .card-image-top {
   max-height: 300px;
   width: 100%;
   object-fit: cover;
   object-position: center;
+}
 
-  border-bottom-right-radius: 0 !important;
-
-  @media screen and (max-width: 767.999px){
-    border-bottom-left-radius: 0 !important;
-  }
-  @media screen and (min-width: 768px){
-    border-top-right-radius: 0 !important;
-  }
+.image-container {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 300px;
+  align-self: stretch;
 }
 </style>
