@@ -1,21 +1,28 @@
 <script setup lang="js">
 const props = defineProps({
   src: String,
-  alt: String,
+  ariaLabel: String
 });
 </script>
 
 <template>
-  <div class="filler">
-    <img :src="props.src" :alt="props.alt">
-  </div>
+  <section class="filler"
+           :style="{backgroundImage: 'url('+ props.src +')'}"
+           :aria-label="props.ariaLabel"
+  >
+    <slot/>
+  </section>
 </template>
 
 <style scoped>
-.filler img {
-  height: 300px;
+.filler {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+
+  min-height: 300px;
   width: 100%;
-  object-fit: cover;
-  object-position: top;
+  background-size: cover;
+  background-position: center;
 }
 </style>

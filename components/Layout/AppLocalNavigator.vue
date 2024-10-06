@@ -16,14 +16,16 @@ function refresh() {
   contents.value = [];
   let sections = document.querySelectorAll("section");
   sections.forEach((section) => {
-    // this should be an id to another element!
-    let labelledby = section.getAttribute("aria-labelledby");
-    let labelElement = section.querySelector("#" + labelledby);
+    if (section.getAttribute("aria-labelledby")) {
+      // this should be an id to another element!
+      let labelledby = section.getAttribute("aria-labelledby");
+      let labelElement = section.querySelector("#" + labelledby);
 
-    contents.value.push({
-      ref: "#" + section.getAttribute("id"),
-      text: labelElement.textContent
-    });
+      contents.value.push({
+        ref: "#" + section.getAttribute("id"),
+        text: labelElement.textContent
+      });
+    }
   });
 }
 

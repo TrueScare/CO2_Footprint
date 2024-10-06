@@ -20,7 +20,11 @@
     </template>
   </FillsSmartSection>
 
-  <FillsImageFiller src="/img/wildflowers.jpg" alt="Wiese"/>
+  <FillsImageFiller src="/img/wildflowers.jpg"
+                    aria-label="Füll Element mit Slogan"
+  >
+    <h2 class="bg-primary rounded p-3 px-5 text-white">Schritt für Schritt ins Grüne</h2>
+  </FillsImageFiller>
 
   <FillsSmartSection
       id="co2_tabelle"
@@ -32,9 +36,10 @@
       <CO2Table data-url="countries"/>
     </template>
   </FillsSmartSection>
-  <div class="bg-primary-subtle p-3">
     <FillsSmartSection
         id="mach-mit"
+        class="bg-primary-subtle p-5"
+        fullwidth
     >
       <template v-slot:title>Deine Hilfe Ist gefragt!</template>
       <template v-slot:default>
@@ -57,7 +62,4 @@
         </FillsCardImageText>
       </template>
     </FillsSmartSection>
-  </div>
 </template>
-<script setup lang="ts">
-</script>

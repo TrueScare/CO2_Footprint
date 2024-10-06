@@ -1,3 +1,8 @@
+<script setup lang="js">
+useHead({
+  title: 'AGB',
+});
+</script>
 <template>
   <FillsSmartSection
       id="agb"
@@ -95,5 +100,3 @@
     </template>
   </FillsSmartSection>
 </template>
-<script setup lang="ts">
-</script>

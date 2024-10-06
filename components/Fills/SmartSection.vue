@@ -28,9 +28,19 @@ const titleId = computed(() => {
 
 </script>
 <template>
-  <section :class="{container: !fullwidth}" :id="sectionId" :aria-labelledby="titleId">
-    <h2 :id="titleId"><slot name="title"/></h2>
-    <div class="section-body">
+  <section :class="{container: !fullwidth}"
+           :id="sectionId"
+           :aria-labelledby="titleId"
+  >
+
+    <h2 :id="titleId"
+        :class="{container: fullwidth}"
+    >
+      <slot name="title"/>
+    </h2>
+    <div class="section-body"
+         :class="{container: fullwidth}"
+    >
       <slot name="default"/>
     </div>
   </section>
