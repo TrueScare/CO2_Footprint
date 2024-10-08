@@ -33,7 +33,16 @@
     <template v-slot:default>
       <p>Und so geht's:</p>
       <p>Wähle mit "Datenset" die Daten aus, die du dir angucken möchtest. Dort kannst du die Daten filtern, sortieren und selber darin suchen.</p>
+      <DecorationsSteps
+        left
+        bottom
+        green
+      />
       <CO2Table data-url="countries"/>
+      <DecorationsSteps
+          right
+          green
+      />
     </template>
   </FillsSmartSection>
     <FillsSmartSection
@@ -63,3 +72,5 @@
       </template>
     </FillsSmartSection>
 </template>
+<script setup lang="ts">
+</script>

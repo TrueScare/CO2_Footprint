@@ -1,6 +1,8 @@
 <template>
   <NuxtLayout>
-    <NuxtPage/>
+    <main>
+      <NuxtPage/>
+    </main>
   </NuxtLayout>
 </template>
 
@@ -21,3 +23,9 @@ onMounted(() => {
 });
 
 </script>
+
+<style scoped lang="scss">
+main {
+  overflow-x: hidden;
+}
+</style>

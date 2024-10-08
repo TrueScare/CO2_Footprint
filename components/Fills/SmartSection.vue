@@ -32,7 +32,6 @@ const titleId = computed(() => {
            :id="sectionId"
            :aria-labelledby="titleId"
   >
-
     <h2 :id="titleId"
         :class="{container: fullwidth}"
     >
@@ -48,6 +47,12 @@ const titleId = computed(() => {
 <style scoped>
 section {
   margin-top: 30px;
-  margin-bottom: 30px;
+  &:not(:last-child) {
+    margin-bottom: 30px;
+  }
+
+  .section-body {
+    position: relative;
+  }
 }
 </style>

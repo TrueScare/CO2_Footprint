@@ -5,7 +5,7 @@ useHead({
 </script>
 
 <template>
-  <h1 class="container">Über uns</h1>
+  <h1 class="container" style="margin-top: 30px;">Über uns</h1>
   <FillsSmartSection id="woher">
     <template v-slot:title>Woher kommen wir?</template>
     <template v-slot:default>

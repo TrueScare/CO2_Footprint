@@ -11929,6 +11929,9 @@ header .navbar-brand img {
 html {
   scroll-behavior: smooth;
 }
+html body {
+  overflow-x: hidden;
+}
 
 .input-group {
   gap: 10px;
