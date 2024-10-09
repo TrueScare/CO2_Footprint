@@ -153,7 +153,7 @@ function resetFilter() {
         <select id="content_select"
                 v-model="dataUrl"
                 class="form-control" @change="resetFilter()">
-          <option disabled selected value="">Bitte Datenset auswählen</option>
+          <option selected value="">Bitte Datenset auswählen</option>
           <option v-for="content in contentSelection"
                   :value="content.source">
             {{ content.title }}
@@ -176,7 +176,7 @@ function resetFilter() {
         <select v-model="filterProperties[textProperty.name]"
                 @change="filter()"
                 class="form-control">
-          <option selected value="">Bitte auswählen...</option>
+          <option selected :value="filterProperties['']">Bitte auswählen...</option>
           <option
               v-for="uniqueValue in uniqueValuesForProperty(textProperty.name)"
               :value="uniqueValue"
@@ -241,6 +241,9 @@ function resetFilter() {
 }
 
 th {
+  .indicators {
+    pointer-events: none;
+  }
   &.sort-asc {
     .arr-down {
       display: none;
