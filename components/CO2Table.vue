@@ -111,7 +111,7 @@ function filter(search = null) {
 
     if (properties.length > 0) {
       properties.forEach((property) => {
-        if (filterProperties.value[property] !== "" && row[property] !== filterProperties.value[property]) {
+        if (filterProperties.value[property] && row[property] !== filterProperties.value[property]) {
           hasProperty = false;
         }
       });
