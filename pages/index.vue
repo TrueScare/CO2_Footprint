@@ -1,6 +1,8 @@
 <template>
   <FillsSmartSection
       id="mission"
+      fullwidth
+      class="bg-primary-subtle p-5 m-0"
   >
     <template v-slot:title>Unsere Mission</template>
     <template v-slot:default>
@@ -72,5 +74,3 @@
       </template>
     </FillsSmartSection>
 </template>
-<script setup lang="ts">
-</script>

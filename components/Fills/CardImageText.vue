@@ -8,6 +8,11 @@ const props = defineProps({
     type: Boolean,
     default: false,
     required: false
+  },
+  borderless: {
+    type: Boolean,
+    default: false,
+    required: false
   }
 });
 
@@ -18,6 +23,12 @@ const rowAlign = computed(() => {
     return "flex-md-row-reverse image-right";
   } else {
     return "flex-md-row image-left";
+  }
+});
+
+const borderClass = computed(() => {
+  if (props.borderless) {
+    return "border-0"
   }
 });
 
@@ -32,11 +43,12 @@ const imageClasses = computed(() => {
 
 <template>
   <article class="card align-items-lg-center overflow-hidden"
-           :class="rowAlign"
+           :class="[rowAlign, borderClass]"
            :aria-labelledby="id">
     <div class="col-12 col-md-4 image-container"
-    :style="'background-image: url('+ props.src +');'">
-
+         :class="{rounded:props.borderless}"
+         :style="'background-image: url('+ props.src +');'"
+    >
     </div>
     <div class="col-12 col-md-8">
       <div class="card-body">

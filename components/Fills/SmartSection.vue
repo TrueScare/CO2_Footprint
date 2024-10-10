@@ -46,7 +46,10 @@ const titleId = computed(() => {
 </template>
 <style scoped>
 section {
-  margin-top: 30px;
+  &:not(:first-child) {
+    margin-top: 30px;
+  }
+
   &:not(:last-child) {
     margin-bottom: 30px;
   }
