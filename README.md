@@ -2,6 +2,17 @@
 
 Homework for Study
 
+## Requirements
+- npm 10.2.4
+
+## SETUP
+- ``clone repo``
+- ``npm install``
+- ``npm run dev`` (for local server)
+- ``sass assets/styles/main.scss:assets/styles.mainscss``
+
+Page is available under https://localhost:3000 with standard configurations.
+
 ## Content Dir
 
 The countries.csv file is an export from the cp2 emissions table presented by edgar.jrc.ec.europa.eu
@@ -15,3 +26,4 @@ via https://edgar.jrc.ec.europa.eu/report_2023 (09.09.2024)
 - Mitarbeiterin 1, Foto von Mizuno K: https://www.pexels.com/de-de/foto/fashion-mode-menschen-frau-12903102/
 - Mitarbeiter 2, Foto von Kindel Media: https://www.pexels.com/de-de/foto/mann-portrat-lacheln-festhalten-7651967/
 - Team, Foto von fauxels: https://www.pexels.com/de-de/foto/foto-von-leuten-die-fauststoss-haben-3228687/
+- Fabrik2, Foto von Антон Хаткевич: https://www.pexels.com/de-de/foto/dammerung-sonnenuntergang-skyline-industrie-9951823/
