@@ -1,5 +1,5 @@
 <script setup lang="js">
-
+/* region fields */
 const dataUrl = ref("")
 const data = ref([]);
 const properties = ref([]);
@@ -12,15 +12,24 @@ const activeCol = ref({
 });
 const asc = ref(true);
 const filterString = ref("");
-const loading = ref(false)
-
+const loading = ref(false);
+const textProperties = computed(() => {
+  if (properties && properties.value && properties.value.length >= 0) {
+    return properties.value.filter((item) => {
+      return !item.isNumber;
+    });
+  }
+});
+/* endregion fields */
+/* region reactive */
 watch(filterString, () => filter(filterString.value));
 watch(dataUrl, () => refreshTable());
 
 onMounted(() => {
   refreshContentSelect();
 });
-
+/* endregion reactive */
+/* region functions */
 function refreshContentSelect() {
   contentSelection.value = [];
   queryContent().find().then((res) => {
@@ -36,24 +45,28 @@ function refreshContentSelect() {
 
 function refreshTable() {
   loading.value = true;
-  queryContent(dataUrl.value).findOne().then((res) => {
-    data.value = res.body;
-    filteredData.value = data.value;
-    properties.value = [];
-    if (res.body.length > 0) {
-      let entry = res.body[0];
-      let propertyNames = Object.getOwnPropertyNames(entry);
-      propertyNames.forEach((property) => {
-        properties.value.push({
-          name: property,
-          isNumber: !isNaN(parseFloat(entry[property])),
+  if (dataUrl.value) {
+    queryContent(dataUrl.value).findOne().then((res) => {
+      data.value = res.body;
+      filteredData.value = data.value;
+      properties.value = [];
+      if (res.body.length > 0) {
+        let entry = res.body[0];
+        let propertyNames = Object.getOwnPropertyNames(entry);
+        propertyNames.forEach((property) => {
+          properties.value.push({
+            name: property,
+            isNumber: !isNaN(parseFloat(entry[property])),
+          });
         });
-      });
-    }
+      }
 
-    filter(filterString.value);
-    loading.value = false;
-  });
+      filter(filterString.value);
+      loading.value = false;
+    });
+  } else {
+    data.value = [];
+  }
 }
 
 function sortTable(property, isNumber, event) {
@@ -120,14 +133,6 @@ function filter(search = null) {
   });
 }
 
-function textProperties() {
-  if (properties && properties.value && properties.value.length >= 0) {
-    return properties.value.filter((item) => {
-      return !item.isNumber;
-    });
-  }
-}
-
 function uniqueValuesForProperty(property) {
   let values = [];
   data.value.forEach((entry) => {
@@ -141,12 +146,14 @@ function uniqueValuesForProperty(property) {
 function resetFilter() {
   filterProperties.value = {};
 }
+
+/* endregion */
 </script>
 
 <template>
 
   <span class="text-muted">alle absoluten angaben in Tonnen</span>
-  <div class="controls">
+  <div class="controls mt-5 bg-primary-subtle p-3">
     <div class="input-group">
       <label>
         Datenset
@@ -170,13 +177,17 @@ function resetFilter() {
                v-model="filterString">
       </label>
     </div>
-    <div class="input-group">
-      <label v-for="textProperty in textProperties()">
+    <div class="input-group"
+         v-if="data.length > 0"
+    >
+      <label v-for="textProperty in textProperties">
         {{ textProperty.name }}
         <select v-model="filterProperties[textProperty.name]"
                 @change="filter()"
                 class="form-control">
-          <option selected :value="filterProperties['']">Bitte auswählen...</option>
+          <option selected :value="filterProperties['']">
+            Bitte auswählen...
+          </option>
           <option
               v-for="uniqueValue in uniqueValuesForProperty(textProperty.name)"
               :value="uniqueValue"
@@ -222,7 +233,7 @@ function resetFilter() {
       </tr>
       </thead>
       <tbody>
-      <tr v-if="loading"></tr>
+      <tr v-if="loading">Ergebnisse werden geladen...</tr>
       <tr v-if="!loading && filteredData.length <= 0">Leider keine Ergebnisse vorhanden.</tr>
       <tr v-for="(row,index) in filteredData">
         <td>{{ index + 1 }}</td>
@@ -236,14 +247,11 @@ function resetFilter() {
 </template>
 
 <style scoped>
-.controls {
-  margin: 30px 0
-}
-
 th {
   .indicators {
     pointer-events: none;
   }
+
   &.sort-asc {
     .arr-down {
       display: none;
