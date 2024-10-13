@@ -31,18 +31,10 @@ const borderClass = computed(() => {
     return "border-0"
   }
 });
-
-const imageClasses = computed(() => {
-  if (props.imageRight) {
-    return "rounded-end";
-  }
-
-  return "rounded-start";
-});
 </script>
 
 <template>
-  <article class="card align-items-lg-center overflow-hidden"
+  <article class="card align-items-md-center overflow-hidden my-5"
            :class="[rowAlign, borderClass]"
            :aria-labelledby="id">
     <div class="col-12 col-md-4 image-container"
